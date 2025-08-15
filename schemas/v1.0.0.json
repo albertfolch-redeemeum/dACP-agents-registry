@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/dACP-agent-config-schema.json",
+  "title": "dACP Agent Configuration Schema v1.0.0",
+  "description": "Schema for dACP agent configuration",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier for the agent, typically a UUID."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the dACP agent."
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the dACP agent, explaining its purpose and functionality."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "description": "The version of the schema used for this agent configuration.",
+      "enum": ["1.0.0"]
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 0,
+      "description": "List of BOSON PROTOCOL entities associated with the agent.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "configId": {
+            "type": "string",
+            "description": "The configId of the BOSON PROTOCOL instance used by the agent for the specified entity and role. It refers to the environment (for instance \"staging\" or \"production\") and the chain (for instance 137 for Polygon or 8453 for Base).",
+            "pattern": "^(local|testing|staging|production)-[0-9]+-[0-9]+$"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role of the entity in the BOSON PROTOCOL, such as 'seller' or 'buyer'.",
+            "enum": ["seller", "buyer", "disputeResolver", "marketplace", "royaltyRecipient", "other"]
+          },
+          "entityId": {
+            "type": "string",
+            "description": "The unique identifier for the entity within the BOSON PROTOCOL."
+          },
+          "signerAddress": {
+            "type": "string",
+            "description": "The Ethereum address of the signer for the entity. This address is used to sign transactions and messages related to the entity's role in the BOSON PROTOCOL.",
+            "format": "ethereum-address"
+          }
+        },
+        "required": ["configId", "role", "entityId", "signerAddress"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["uuid", "name", "description", "schemaVersion", "entities"],
+  "additionalProperties": false
+}
