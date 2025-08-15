@@ -1,0 +1,26 @@
+{
+  "uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+  "name": "example agent",
+  "description": "The example agent is used to demonstrate the structure of an agent configuration.",
+  "schemaVersion": "1.0.0",
+  "entities": [
+    {
+      "configId": "staging-80002-0",
+      "role": "seller",
+      "entityId": "123",
+      "signerAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+    },
+    {
+      "configId": "staging-11155111-0",
+      "role": "seller",
+      "entityId": "456",
+      "signerAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+    },
+    {
+      "configId": "staging-11155111-0",
+      "role": "buyer",
+      "entityId": "21",
+      "signerAddress": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    }
+  ]
+}
